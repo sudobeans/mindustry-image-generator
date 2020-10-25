@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="index.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <title>js testing cock</title>
-</head>
-<body>
-    <div class = "container">
-        <h1>Mindustry Image Generator</h1>
-        <p>
-            Converts images into code for a Mindustry Micro Processor, so that you can print images on logic displays in the game.
-        </p>
-        <form action="/action_page.php">
-            <input type="file" id="myFile" name="filename">
-            <input type="submit">
-        </form>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+    <title>Mindustry Image Generator</title>
+  </head>
+  <body>
+    <div class="main">
+    <h1>Mindustry Image Generator</h1>
+    <div class="textboxborder">
+      <p>Converts images into code for a Mindustry Micro Processor, so that you can print images on logic displays in the game.</p>
     </div>
-</body>
+    <div> 
+        <h2>Upload an image:</h2>
+        <input type="file" id="fileInput" name="file" />
+        <h2>Your image:</h2>
+        <img id="imageSrc" alt="No Image" />
+        <h2>Your image (resized preview):</h2>
+        <canvas id="resizedImageCanvas"></canvas>
+    </div>
+    <div>
+      <h2>Code generated from the image:</h2>
+      <div class="textboxborder">
+        <code id="codeoutput">Your code will show up once you upload an image!</code>
+      </div>
+    </div>
+    </div>
+  </body>
+  <script src="index.js" type="text/javascript"></script>
+  <script src="opencv.js" type="text/javascript"></script>
 </html>
