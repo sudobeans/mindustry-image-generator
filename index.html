@@ -8,9 +8,38 @@
   <body>
     <div class="main">
     <h1>Mindustry Image Generator</h1>
+
+    <!-- Text box at the top of the page -->
     <div class="textboxborder">
       <p>Converts images into code for a Mindustry Micro Processor, so that you can print images on logic displays in the game.</p>
+      
+      <!-- collapsible how to menu -->
+      <button type="button" class="collapsible">How to use</button>
+      <div class="content">
+        <ol>
+          <li>Copy this schematic.
+            <button onclick="copySchematic()">Copy code</button>
+            <input id="schematicTextArea" value="If you are seeing this text, something isn't working!">
+          </li>
+          <li>Import the schematic into the game. If you don't know how, <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1933022628">this guide might help you.</a></li>
+          <li>Place down the schematic.</li>
+          <li>Upload your image to this website.</li>
+          <li>Copy the code generated from your image.</li>
+          <li>
+            Import that code into the Micro Processor in the game:
+            <ol>
+              <li>Click the Micro Processor block.</li>
+              <li>Click the pen that shows up under it.</li>
+              <li>Inside the menu, click the "Edit" button.</li>
+              <li>Click "Import from clipboard."</li>
+            </ol>
+          </li>
+          <li>Then, click the switch block next to the Micro Processor.</li>
+        </ol>
+      </div> 
     </div>
+
+    <!-- Image uploading area -->
     <div> 
         <h2>Upload an image:</h2>
         <input type="file" id="fileInput" name="file" />
@@ -19,10 +48,14 @@
         <h2>Your image (resized preview):</h2>
         <canvas id="resizedImageCanvas"></canvas>
     </div>
+    
+    <!-- Code output area -->
     <div>
       <h2>Code generated from the image:</h2>
+      <button onclick="copyCodeOutput()">Copy code</button>
       <div class="textboxborder">
-        <code id="codeoutput">Your code will show up once you upload an image!</code>
+        <textarea id="codeoutput">Your code will show up once you upload an image!</textarea>
+        <!-- <code id="codeoutput">Your code will show up once you upload an image!</code> -->
       </div>
     </div>
     </div>
