@@ -11,11 +11,11 @@ schematicTextArea.value="bXNjaAF4nJ2Pu07DMBSGTy5qpXJb080TLCQZurFWYuAiMfQFXNtNLBq
 
 // This code adds functionality to the collapsible menus. 
 // Stolen from https://www.w3schools.com/howto/howto_js_collapsible.asp
-var coll = document.getElementsByClassName("collapsible");
+var collapsibleMenus = document.getElementsByClassName("collapsible");
 var i;
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
+for (i = 0; i < collapsibleMenus.length; i++) {
+  collapsibleMenus[i].addEventListener("click", function() {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
@@ -28,58 +28,58 @@ for (i = 0; i < coll.length; i++) {
 
 // Generates and displays the code when an image is uploaded
 imgElement.onload = function() {
-    let newSize = new cv.Size(20, 20); // The resolution of the image for the display
+  let newSize = new cv.Size(20, 20); // The resolution of the image for the display
 
-    let uploadedImage = cv.imread(imgElement); // Loads the uploaded image as an OpenCV mat
-    let resizedImage = new cv.Mat();
+  let uploadedImage = cv.imread(imgElement); // Loads the uploaded image as an OpenCV mat
+  let resizedImage = new cv.Mat();
 
-    cv.resize(uploadedImage, resizedImage, newSize, interpolation = cv.INTER_NEAREST); // Resizes the image
-    cv.imshow('resizedImageCanvas', resizedImage);
+  cv.resize(uploadedImage, resizedImage, newSize, cv.INTER_NEAREST); // Resizes the image
+  cv.imshow('resizedImageCanvas', resizedImage);
 
-    codeoutput.value = imageToCode(resizedImage, 80);
+  codeoutput.value = imageToCode(resizedImage, 80);
 
-    uploadedImage.delete();
-    resizedImage.delete();
+  uploadedImage.delete();
+  resizedImage.delete();
 };
 
 // Selects and copies the code in the code box
 function copyCodeOutput() {
-    codeoutput.select();
-    codeoutput.setSelectionRange(0, 999999);
-    document.execCommand("copy")
+  codeoutput.select();
+  codeoutput.setSelectionRange(0, 999999);
+  document.execCommand("copy")
 }
 
 // Selects and copies the code in the code box
 function copySchematic() {
-    schematicTextArea.select();
-    schematicTextArea.setSelectionRange(0, 999999);
-    schematicTextArea.execCommand("copy")
+  schematicTextArea.select();
+  schematicTextArea.setSelectionRange(0, 999999);
+  schematicTextArea.execCommand("copy")
 }
 
 // Converts an image to code
 function imageToCode(image, displaySize) {
-    let imageAsCode = "";
-    let pixel = 0;
-    let pixelSize = displaySize / image.rows;
+  let imageAsCode = "";
+  let pixel = 0;
+  let pixelSize = displaySize / image.rows;
 
-    imageAsCode += "sensor draw switch1 @enabled\n" +
-                   "jump 3 equal draw true\n" +
-                   "end\n"+
-                   "draw clear 0 0 0 0 0 0 \n"
+  imageAsCode += "sensor draw switch1 @enabled\n" +
+                  "jump 3 equal draw true\n" +
+                  "end\n"+
+                  "draw clear 0 0 0 0 0 0 \n"
 
-    for(x = 0; x < image.cols; x++) {
-        for(y = 0; y < image.rows; y++) {
-            pixel = image.ucharPtr(y, x);
-            imageAsCode += `draw color ${pixel[0]} ${pixel[1]} ${pixel[2]} ${pixel[3]} 0 0\n`;
-                                                            /* the displaySize - (y + 1) * pixelSize is necessary because 
-                                                            the top corner in OpenCV is (0, 0) 
-                                                            but in Mindustry it is (80, 0)  */
-            imageAsCode += `draw rect ${x * pixelSize} ${displaySize - ((y + 1) * pixelSize)} ${pixelSize} ${pixelSize} 0 0\n`;
-        }
-        imageAsCode += "drawflush display1\n"
+  for(let x = 0; x < image.cols; x++) {
+    for(let y = 0; y < image.rows; y++) {
+      pixel = image.ucharPtr(y, x);
+      imageAsCode += `draw color ${pixel[0]} ${pixel[1]} ${pixel[2]} ${pixel[3]} 0 0\n`;
+                                                      /* the displaySize - (y + 1) * pixelSize is necessary because 
+                                                      the top corner in OpenCV is (0, 0) 
+                                                      but in Mindustry it is (80, 0)  */
+      imageAsCode += `draw rect ${x * pixelSize} ${displaySize - ((y + 1) * pixelSize)} ${pixelSize} ${pixelSize} 0 0\n`;
     }
+    imageAsCode += "drawflush display1\n"
+  }
 
-    imageAsCode += "control enabled switch1 false 0 0 0\n";
+  imageAsCode += "control enabled switch1 false 0 0 0\n";
 
-    return imageAsCode;
+  return imageAsCode;
 }
