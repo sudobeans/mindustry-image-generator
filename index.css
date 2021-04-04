@@ -23,7 +23,7 @@ h2{
 #codeoutput {
   font-family: monospace;
   white-space: pre-line;
-  }
+}
 
 .textboxborder {
   max-width: 50%;
@@ -35,9 +35,9 @@ h2{
   padding: 1em;
 }
 
- /* This styling adds functionality to the collapsible menus. 
-    Stolen from https://www.w3schools.com/howto/howto_js_collapsible.asp */
- .collapsible {
+/* This styling adds functionality to the collapsible menus. 
+  Stolen from https://www.w3schools.com/howto/howto_js_collapsible.asp */
+.collapsible {
   background-color: #444;
   color: white;
   cursor: pointer;
