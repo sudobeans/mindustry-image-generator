@@ -7,4 +7,4 @@ UPDATE: This was forked by r4v10l1. [You can use the 40x40 image generator here.
 
 ------
 
-I don't have very much experience in web development, so a lot of my code may be in poor style. Much of it was copied from the [openCV tutorials](https://docs.opencv.org/3.4/d5/d10/tutorial_js_root.html) and [W3Schools](https://www.w3schools.com/default.asp).
+Due to my limited experience with web development, much of this code is based on code from the [openCV tutorials](https://docs.opencv.org/3.4/d5/d10/tutorial_js_root.html) and [W3Schools](https://www.w3schools.com/default.asp).
